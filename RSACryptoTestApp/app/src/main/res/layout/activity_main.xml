@@ -19,4 +19,8 @@
             android:layout_height="wrap_content"
             android:text="encrypted_word"/>
 
+  <TextView android:id="@+id/decrypted_word" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="decrypted_word"/>
+
 </LinearLayout>

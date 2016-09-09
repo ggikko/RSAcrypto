@@ -24,7 +24,6 @@ import javax.crypto.NoSuchPaddingException;
 public class RSA {
 
   public static PublicKey getRSAPublicPEMKeyFromString(String publicPEMKey) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeySpecException {
-
     byte[] decodedPublicPEMKeyBytes = Base64.decode(publicPEMKey.getBytes("UTF-8"), Base64.DEFAULT);
     String publicDERKeyString = stripPublicKeyHeaders(new String(decodedPublicPEMKeyBytes, "UTF-8"));
     KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -58,7 +57,7 @@ public class RSA {
       cipher.init(Cipher.ENCRYPT_MODE, publicKey);
       byte[] encryptedBytes = cipher.doFinal(plain.getBytes());
       Log.d("BYTES", new String(encryptedBytes));
-      return new String(Base64.encode(encryptedBytes, 0));
+      return Base64.encodeToString(encryptedBytes,Base64.NO_WRAP);
     } else
       return null;
   }
